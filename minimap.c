@@ -6,7 +6,7 @@
 /*   By: akhouya <akhouya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 13:36:33 by akhouya           #+#    #+#             */
-/*   Updated: 2023/02/22 16:35:43 by akhouya          ###   ########.fr       */
+/*   Updated: 2023/02/22 16:57:13 by akhouya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void renderciel(t_cub *cub) {
     int i;
     int j;
     i = 0;
+    //ciel
     while(i < WINDOWS_HEIGHT / 2) {
         j = 0;
         while(j < WINDOW_WIDTH) {
@@ -71,8 +72,17 @@ void renderciel(t_cub *cub) {
         }
         i++;
     }
-    i = 0;
+    //floor
+    i = WINDOWS_HEIGHT / 2;
     j = 0;
+        while(i < WINDOWS_HEIGHT) {
+        j = 0;
+        while(j < WINDOW_WIDTH) {
+            my_mlx_pixel_put(cub, j, i, create_trgb(1, 255, 255, 255));
+            j++;
+        }
+        i++;
+    }
     
 }
 void render3d(t_cub *cub) {
