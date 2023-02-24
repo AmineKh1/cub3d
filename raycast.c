@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: heloufra <heloufra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akhouya <akhouya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 13:22:32 by akhouya           #+#    #+#             */
-/*   Updated: 2023/02/23 22:11:50 by heloufra         ###   ########.fr       */
+/*   Updated: 2023/02/24 16:10:08 by akhouya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
-void lineray(t_cub *cub, double angle, int i) {
 
+void lineray(t_cub *cub, double angle, int i) {
     int x1 = cub->player.x;
     int y1 = cub->player.y;
     int x2 = x1 + cos(angle) * 1000;
@@ -40,7 +40,6 @@ void lineray(t_cub *cub, double angle, int i) {
         {
             return ;
         }
-        
         my_mlx_pixel_put(cub,  (cub->minimap * x1), (cub->minimap * y1), create_trgb(1, 136, 8, 8));
     }
 }
@@ -53,11 +52,14 @@ void castAllRays(t_cub *cub) {
     int i = 0;
     
     while (i < cub->num_rays) {
+        
         rayangle += (cub->fov_angle) / cub->num_rays;
         cub->rayc[i].rayangle = rayangle;
         renderRay(cub, rayangle, i);
         i++;
     }
+    
+   
 }
 
 double distanceBetweenPoints(x1, y1, x2, y2) {
@@ -71,7 +73,6 @@ int	create_trgb(int t, int r, int g, int b)
 int haswall(int x, int y, t_cub *cub, int i) {
     if(x < 0 || x > cub->window_width || y < 0 || y > cub->window_height)
         return 0;
-   
     int indx = floor(x / cub->cubpx);
     int indy = floor(y / cub->cubpx);
     if (cub->map[indy][indx] == '1') {
@@ -110,7 +111,6 @@ int haswall(int x, int y, t_cub *cub, int i) {
     }
     return 1;
 }
-
 int haswallplayer(int x, int y, t_cub *cub) {
     if(x < 0 || x > cub->window_width || y < 0 || y > cub->window_height)
         return 0;

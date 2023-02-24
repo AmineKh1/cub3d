@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: heloufra <heloufra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akhouya <akhouya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 11:08:28 by akhouya           #+#    #+#             */
-/*   Updated: 2023/02/24 03:29:18 by heloufra         ###   ########.fr       */
+/*   Updated: 2023/02/24 15:56:19 by akhouya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ typedef struct s_cub {
     int cubpx;
     int window_width;
     int window_height;
-    int fov_angle;
+    double fov_angle;
     int num_rays;
     float minimap;
     int wall_strip_width;
