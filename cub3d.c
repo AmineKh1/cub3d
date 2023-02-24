@@ -6,7 +6,7 @@
 /*   By: heloufra <heloufra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 13:16:33 by akhouya           #+#    #+#             */
-/*   Updated: 2023/02/24 03:36:11 by heloufra         ###   ########.fr       */
+/*   Updated: 2023/02/24 17:18:25 by heloufra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,9 +151,19 @@ int main(int argc, char *argv[]) {
     // cub->map[13] = strdup("11111111 1111111 1111111111111");
     // cub->map[14] = NULL;
     if (!parser(cub, argv[1]))
+    {
+        system("leaks cub3d");
         return (1); 
+    }
     int i;
+    
 
+    printf("SO = %s\n", cub->SO);
+    printf("NO = %s\n", cub->NO);
+    printf("WE = %s\n", cub->WE);
+    printf("EA = %s\n", cub->EA);
+    printf("F = %x\n", cub->F);
+    printf("C = %x\n", cub->C);
     printf("map\n");
     i = 0;
     while (i < 14)
@@ -161,12 +171,13 @@ int main(int argc, char *argv[]) {
         printf("%s\n", cub->map[i]);
         i++;
     }
-    // cub->rayc = malloc(cub->num_rays * sizeof(t_rayc));
+    system("leaks cub3d");
+    cub->rayc = malloc(cub->num_rays * sizeof(t_rayc));
 
-    // cub->data = malloc(sizeof(char*) * 14);
-    // setup_map(cub);
-    // rander_map(cub);
-    // mlx_hook(cub->win, 2, 0, &draw_map, cub);
-	// mlx_loop(cub->mlx);
+    cub->data = malloc(sizeof(char*) * 14);
+    setup_map(cub);
+    rander_map(cub);
+    mlx_hook(cub->win, 2, 0, &draw_map, cub);
+	mlx_loop(cub->mlx);
     
 }

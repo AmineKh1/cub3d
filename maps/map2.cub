@@ -1,10 +1,12 @@
+C 102,178,255
+
 NO ./textures/StoneHitler.xpm
 SO ./textures/wall.xpm
 WE ./textures/Blue.xpm
 EA ./textures/Stoneflag.xpm
 
-C 102,178,255
-F 64,64,    64
+
+F 64,64,    64 
 
 111111111111111111111111111111111
 111111  1000000000000000000000001

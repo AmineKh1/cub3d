@@ -6,7 +6,7 @@
 /*   By: heloufra <heloufra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 00:49:14 by heloufra          #+#    #+#             */
-/*   Updated: 2023/02/24 02:39:52 by heloufra         ###   ########.fr       */
+/*   Updated: 2023/02/24 03:51:45 by heloufra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,7 @@ int get_color(t_cub *cub, char *line)
     r = ft_atoi(colors[0]);
     g = ft_atoi(colors[1]);
     b = ft_atoi(colors[2]);
+    free_array_string(colors);
     if (r >= 0 && r <= 255 && g >= 0 && g <= 255 && b >= 0 && b <= 255)
         color = r << 16 | g << 8 | b;
     else
