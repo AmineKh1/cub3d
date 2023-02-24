@@ -6,7 +6,7 @@
 /*   By: akhouya <akhouya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 17:24:59 by akhouya           #+#    #+#             */
-/*   Updated: 2023/02/13 12:06:28 by akhouya          ###   ########.fr       */
+/*   Updated: 2023/02/24 10:13:56 by akhouya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 static void	printf_help(va_list val, int *count, char formatstring)
 {
+	int j;
+	count = &j;
 	if (formatstring == 's')
 		ft_putstr_fd(va_arg(val, char *), 1, count);
 	else if (formatstring == 'i' || formatstring == 'd')

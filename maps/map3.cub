@@ -1,0 +1,10 @@
+C 255,255,255
+
+NO ./textures/StoneHitler.xpm
+SO ./textures/wall.xpm
+WE ./textures/Blue.xpm
+EA ./textures/Stoneflag.xpm
+
+
+F 64,64,    64 
+

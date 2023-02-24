@@ -3,12 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: heloufra <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: heloufra <heloufra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 08:55:41 by heloufra          #+#    #+#             */
-/*   Updated: 2022/01/05 09:07:59 by heloufra         ###   ########.fr       */
+/*   Updated: 2023/02/24 18:07:56 by heloufra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 int	ft_atoi(const char *str)
 {
@@ -19,6 +21,8 @@ int	ft_atoi(const char *str)
 	nb = 0;
 	sign = 1;
 	i = 0;
+	if (ft_strlen(str) > 4)
+		return (-1);
 	while (str[i] == ' ' || (str[i] >= '\t' && str[i] <= '\r'))
 		i++;
 	if (str[i] == '-' || str[i] == '+')

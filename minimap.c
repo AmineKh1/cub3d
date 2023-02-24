@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: heloufra <heloufra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akhouya <akhouya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 13:36:33 by akhouya           #+#    #+#             */
-/*   Updated: 2023/02/23 22:10:40 by heloufra         ###   ########.fr       */
+/*   Updated: 2023/02/24 16:10:31 by akhouya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ void key_press(t_cub *cub, int codekey) {
     cub->player.x = round(x_move);
     cub->player.y = round(y_move);
 }
-
 void update_map(t_cub *cub, int codekey) {
 	key_press(cub, codekey);
 }

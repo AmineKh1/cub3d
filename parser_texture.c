@@ -6,7 +6,7 @@
 /*   By: heloufra <heloufra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 00:32:12 by heloufra          #+#    #+#             */
-/*   Updated: 2023/02/24 00:48:58 by heloufra         ###   ########.fr       */
+/*   Updated: 2023/02/24 18:15:24 by heloufra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,9 @@ int    get_texture(t_cub *cub, char *line)
     fd = open(path, O_RDONLY);
     if (fd < 0)
     {
+            free(tmp); 
+            free(texture);
+            free(path);
         printf("Error texture file not found\n");
         return (0);
     }
