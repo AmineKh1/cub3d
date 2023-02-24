@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akhouya <akhouya@student.42.fr>            +#+  +:+       +#+        */
+/*   By: heloufra <heloufra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 11:08:28 by akhouya           #+#    #+#             */
-/*   Updated: 2023/02/22 16:39:46 by akhouya          ###   ########.fr       */
+/*   Updated: 2023/02/24 03:29:18 by heloufra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB_H
 #define CUB_H
+#include <stdio.h>
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdlib.h>
@@ -19,6 +20,7 @@
 # include "mlx.h"
 # include <stdarg.h>
 #include <math.h>
+#include "libft/libft.h"
 
 #define LINES 14
 #define ROWS 37
@@ -48,18 +50,34 @@ typedef struct s_player {
     double movespeed;
     double rotationSpeed;
 } t_player;
+
 typedef struct s_cub {
     void    *mlx;
     void    *win;
     char    **map;
+    char    *SO;
+    char    *NO;
+    char    *WE;
+    char    *EA;
+    int     F;
+    int     C;
     void    *img_ptr;
     int    *data;
+    int     row;
+    int     line;
+    int cubpx;
+    int window_width;
+    int window_height;
+    int fov_angle;
+    int num_rays;
+    float minimap;
+    int wall_strip_width;
     t_rayc   *rayc;
     t_player player;
     
 }   t_cub;
-char	*ft_strdup(char *s);
-size_t	ft_strlen(const char *s);
+
+
 void lineray(t_cub *cub, double angle, int i);
 void renderRay(t_cub *cub, double angle, int i);
 void castAllRays(t_cub *cub);
@@ -74,4 +92,35 @@ void update_map(t_cub *cub, int codekey);
 void	my_mlx_pixel_put(t_cub *data, int x, int y, int color);
 int haswallplayer(int x, int y, t_cub *cub);
 void renderciel(t_cub *cub);
+
+int    parser(t_cub *cub, char *file);
+int     verify_file(char **lines);
+int     is_color(char *line);
+int     is_texture(char *line);
+int     parser_map(t_cub *cub, char **lines);
+int     parser_texture(t_cub *cub, char **lines);
+int     parser_color(t_cub *cub, char **lines);
+void    t_cub_init(t_cub *cub);
+char    **read_file(char *file_name);
+void    free_array_string(char **array);
+int     array_len(char **array);
+int     longest_line(char **array);
+int     empty_line(char *line);
+char    *advance_whitespace(char *line);
+int	    check_file(char *file_name);
+char    *get_next_line(int fd);
+int    get_texture(t_cub *cub, char *line);
+int    valid_textures(t_cub *cub);
+int     get_color(t_cub *cub, char *line);
+int     valid_colors(t_cub *cub);
+char    *remove_spaces(char *line);
+int     valid_map_lines(t_cub *cub);
+
+int     valid_player(t_cub *cub);
+int     valid_map_space(t_cub *cub, int i, int j);
+int     valid_map(t_cub *cub);
+int     get_map(t_cub *cub, char **line);
+int     is_map(char *line);
+
+
 #endif

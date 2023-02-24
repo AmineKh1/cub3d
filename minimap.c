@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akhouya <akhouya@student.42.fr>            +#+  +:+       +#+        */
+/*   By: heloufra <heloufra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 13:36:33 by akhouya           #+#    #+#             */
-/*   Updated: 2023/02/22 16:57:13 by akhouya          ###   ########.fr       */
+/*   Updated: 2023/02/23 22:10:40 by heloufra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,44 +58,43 @@ void key_press(t_cub *cub, int codekey) {
 void update_map(t_cub *cub, int codekey) {
 	key_press(cub, codekey);
 }
-#include <stdio.h>
+
 void renderciel(t_cub *cub) {
     int i;
     int j;
+
     i = 0;
-    //ciel
-    while(i < WINDOWS_HEIGHT / 2) {
+    while(i < cub->window_height / 2) {
         j = 0;
-        while(j < WINDOW_WIDTH) {
-            my_mlx_pixel_put(cub, j, i, create_trgb(1, 0, 0, 255));
+        while(j < cub->window_width) {
+            my_mlx_pixel_put(cub, j, i, cub->C);
             j++;
         }
         i++;
     }
-    //floor
-    i = WINDOWS_HEIGHT / 2;
+    i = cub->window_height / 2;
     j = 0;
-        while(i < WINDOWS_HEIGHT) {
+        while(i < cub->window_height) {
         j = 0;
-        while(j < WINDOW_WIDTH) {
-            my_mlx_pixel_put(cub, j, i, create_trgb(1, 255, 255, 255));
+        while(j < cub->window_width) {
+            my_mlx_pixel_put(cub, j, i, cub->F);
             j++;
         }
         i++;
     }
-    
 }
+
 void render3d(t_cub *cub) {
     int i = 0;
-    double distanceProjPlane = ((WINDOW_WIDTH / 2) / tan(FOV_ANGLE / 2));
+    double distanceProjPlane = ((cub->window_width / 2) / tan(cub->fov_angle / 2));
     double wallStripHeight = 0;
     double d;
     double r = 0;
     int color;
     int g;
-    while(i < NUM_RAYS) {
+    while(i < cub->num_rays) {
         if(cub->rayc[i].distance > 0)
-            wallStripHeight = (CUBPX / (cub->rayc[i].distance * cos((cub->rayc[i].rayangle - cub->player.rotationangle* M_PI / 180)))) * distanceProjPlane;
+            wallStripHeight = (cub->cubpx / (cub->rayc[i].distance * cos((cub->rayc[i].rayangle - cub->player.rotationangle* M_PI / 180)))) * distanceProjPlane;
 
         if (r > cub->rayc[i].distance || i == 0)
             r = cub->rayc[i].distance;
@@ -105,10 +104,11 @@ void render3d(t_cub *cub) {
             g = cub->rayc[i].hitdir == 1 ? create_trgb(1, 255 *d , 0, 0) : cub->rayc[i].hitdir == 2 ? color = create_trgb(1, 0, 255*d, 0) : cub->rayc[i].hitdir == 3 ? create_trgb(1, 0, 0, 255*d) : cub->rayc[i].hitdir == 0  ? create_trgb(1, 255*d, 255*d, 0): create_trgb(1, 0*d, 0*d, 0*d);
                 color = g;
         
-        renderRectangle(cub, i * WALL_STRIP_WIDTH, (WINDOWS_HEIGHT / 2) - (wallStripHeight / 2), WALL_STRIP_WIDTH, wallStripHeight, color);
+        renderRectangle(cub, i * cub->wall_strip_width, (cub->window_height / 2) - (wallStripHeight / 2), cub->wall_strip_width, wallStripHeight, color);
         i++;
     }
 }
+
 void renderRectangle(t_cub *cub, int x, int y, int w, int h, int color) {
     int i, j;
     for (i = x; i < x + w; i++) {
