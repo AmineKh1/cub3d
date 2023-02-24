@@ -6,7 +6,7 @@
 /*   By: akhouya <akhouya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 11:08:28 by akhouya           #+#    #+#             */
-/*   Updated: 2023/02/24 18:29:49 by akhouya          ###   ########.fr       */
+/*   Updated: 2023/02/24 19:00:18 by akhouya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 #define LINES 14
 #define ROWS 37
 #define CUBPX 32
-#define WINDOW_WIDTH 1000
-#define WINDOWS_HEIGHT 1000
+#define WINDOW_WIDTH 1200
+#define WINDOWS_HEIGHT 600
 #define FOV_ANGLE (60 * (M_PI / 180))
 #define WALL_STRIP_WIDTH 1
 #define NUM_RAYS (WINDOW_WIDTH / WALL_STRIP_WIDTH)

@@ -6,7 +6,7 @@
 /*   By: akhouya <akhouya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 13:22:32 by akhouya           #+#    #+#             */
-/*   Updated: 2023/02/24 16:10:08 by akhouya          ###   ########.fr       */
+/*   Updated: 2023/02/24 20:37:53 by akhouya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int haswall(int x, int y, t_cub *cub, int i) {
     double dist_y = abs(y - y_grid);
 
     // determine hit direction ussing angle of ray
-    if (dist_x < dist_y) {
+    if (dist_x < dist_y){
         if (x > x_grid) {
             cub->rayc[i].hitdir = 0; // east yellow
         } 
@@ -114,8 +114,9 @@ int haswall(int x, int y, t_cub *cub, int i) {
 int haswallplayer(int x, int y, t_cub *cub) {
     if(x < 0 || x > cub->window_width || y < 0 || y > cub->window_height)
         return 0;
-    int indx = floor(x / cub->cubpx);
-    int indy = floor(y / cub->cubpx);
+    
+    int indx = floor((x + 1 ) / cub->cubpx);
+    int indy = floor((y + 1 ) / cub->cubpx);
     if (cub->map[indy][indx] == '1') {
         return 0;
     }

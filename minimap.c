@@ -6,7 +6,7 @@
 /*   By: akhouya <akhouya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 13:36:33 by akhouya           #+#    #+#             */
-/*   Updated: 2023/02/24 16:10:31 by akhouya          ###   ########.fr       */
+/*   Updated: 2023/02/24 20:42:26 by akhouya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void key_press(t_cub *cub, int codekey) {
     double angle = cub->player.rotationangle * M_PI / 180;
-    double move_speed = cub->player.movespeed;
+    double move_speed = 1;
     double x_move = 0;
     double y_move = 0;
 
@@ -43,12 +43,15 @@ void key_press(t_cub *cub, int codekey) {
         cub->player.rotationangle -= 5;
         if (cub->player.rotationangle < 0)
             cub->player.rotationangle = 360;
+        
     }
     else if (codekey == 53) { // esc
         exit(0);
     }
     x_move = cub->player.x + (move_speed * x_move);
     y_move = cub->player.y + (move_speed * y_move);
+    //print variables
+    // printf("x_move: %f  y_move: %f angle: %f cos: %f  sin: %f cub->player.x: %f  cub->player.y: %f\n", x_move, y_move, angle, cos(angle), sin(angle), cub->player.x, cub->player.y);
     if(haswallplayer(x_move, y_move, cub) == 0)
         return ;
     cub->player.x = round(x_move);

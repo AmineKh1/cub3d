@@ -6,7 +6,7 @@
 /*   By: akhouya <akhouya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 13:16:33 by akhouya           #+#    #+#             */
-/*   Updated: 2023/02/24 18:51:00 by akhouya          ###   ########.fr       */
+/*   Updated: 2023/02/24 20:44:35 by akhouya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void setup_map(t_cub *cub) {
       
         while(cub->map[i][++j] != '\0')
         {
-            if(cub->map[i][j] == 'W' || cub->map[i][j] == 'E' || cub->map[i][j] == 'N' || cub->map[i][j] == 'S')
+            if(cub->map[i][j] != '\0' && (cub->map[i][j] == 'W' || cub->map[i][j] == 'E' || cub->map[i][j] == 'N' || cub->map[i][j] == 'S'))
             {
                 cub->player.x = j * cub->cubpx;
                 cub->player.y = i * cub->cubpx;
@@ -149,10 +149,11 @@ int main(int argc, char *argv[]) {
         i++;
     }
     cub->minimap = 0.2;
-    cub->cubpx = 32;
+    cub->cubpx = 64;
     cub->wall_strip_width = 1;
-    cub->window_height = cub->line * cub->cubpx;
-    cub->window_width = cub->cubpx * cub->row;
+    cub->window_height = 1080;
+    cub->window_width = 1080;
+    cub->cubpx = 64;
     cub->num_rays = cub->window_width / cub->wall_strip_width;
     cub->rayc = malloc(cub->num_rays * sizeof(t_rayc));
 
@@ -160,7 +161,6 @@ int main(int argc, char *argv[]) {
     
     
     cub->fov_angle = (60 * (M_PI / 180));
-    // printf("cubpx = %d\n", cub->cubpx);
     setup_map(cub);
     rander_map(cub);
     mlx_hook(cub->win, 2, 0, &draw_map, cub);
