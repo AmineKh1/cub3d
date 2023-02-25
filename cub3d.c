@@ -6,7 +6,7 @@
 /*   By: heloufra <heloufra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 13:16:33 by akhouya           #+#    #+#             */
-/*   Updated: 2023/02/24 17:25:28 by heloufra         ###   ########.fr       */
+/*   Updated: 2023/02/24 18:16:17 by heloufra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,8 @@ void rander_map(t_cub *cub) {
         {
             if(cub->map[i][j] != '\0' && cub->map[i][j] == '1')
                 draw_pixels(create_trgb(1, 255, 255, 255), j * cub->cubpx, i * cub->cubpx, cub);
-            if(cub->map[i][j] != '\0' && cub->map[i][j] == 'W')
+            if(cub->map[i][j] != '\0' && (cub->map[i][j] == 'W' || cub->map[i][j] == 'E' || cub->map[i][j] == 'S' || cub->map[i][j] == 'N'))
+                draw_pixels(create_trgb(1, 0, 0, 255), j * cub->cubpx, i * cub->cubpx, cub);
             {
                 draw_circle(create_trgb(1, 136, 8, 8), cub);
                 castAllRays(cub);
@@ -159,7 +160,7 @@ int main(int argc, char *argv[]) {
         i++;
     }
     cub->minimap = 0.2;
-    cub->cubpx = 32;
+    cub->cubpx = 40;
     cub->wall_strip_width = 1;
     cub->window_height = cub->line * cub->cubpx;
     cub->window_width = cub->cubpx * cub->row;
@@ -168,12 +169,12 @@ int main(int argc, char *argv[]) {
 
     
     
-        
+    
     cub->fov_angle = (60 * (M_PI / 180));
-    
-    
-    
-
+    // cub->window_width = 1184;
+    // cub->window_height = 448;
+    // cub->cubpx = 1184 / 40;
+    // if()
     setup_map(cub);
     rander_map(cub);
     mlx_hook(cub->win, 2, 0, &draw_map, cub);
