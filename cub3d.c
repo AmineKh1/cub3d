@@ -6,7 +6,7 @@
 /*   By: akhouya <akhouya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 13:16:33 by akhouya           #+#    #+#             */
-/*   Updated: 2023/02/24 20:44:35 by akhouya          ###   ########.fr       */
+/*   Updated: 2023/02/26 14:37:50 by akhouya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,19 @@ void	my_mlx_pixel_put(t_cub *data, int x, int y, int color)
     if (y > 0 && y < data->window_height && x > 0 && x < data->window_width)
 	data->data[y * data->window_width + x] = color;
 }
-
+int	my_mlx_color(t_cub *data, int x, int y, int i)
+{
+	return  *(int*)(data->texture[i].data + (y * data->texture[i].size_line + x * (data->texture[i].bpp/ 8)));
+}
 void setup_map(t_cub *cub) {
     cub->mlx = mlx_init();
 	cub->win = mlx_new_window(cub->mlx,
 			 cub->window_width, cub->window_height, "cub");
     cub->player.radius = 4;
     cub->player.turnDirection = 0;
-    cub->player.movespeed = 3;
+    cub->player.movespeed = 5;
     cub->player.rotationangle = 90;
-    cub->player.rotationSpeed = 3 * (M_PI / 180);
+    cub->player.rotationSpeed = 5 * (M_PI / 180);
     cub->player.walkDirection = 0;
     int i = -1;
     int j = 0;
@@ -136,7 +139,6 @@ int main(int argc, char *argv[]) {
         return (1);
     (void)argv[1];
 
-
     if (!parser(cub, argv[1]))
         return (1); 
     int i;
@@ -158,12 +160,25 @@ int main(int argc, char *argv[]) {
     cub->rayc = malloc(cub->num_rays * sizeof(t_rayc));
 
     
+    int w, h;
+
     
-    
+
+    // exit(0);
     cub->fov_angle = (60 * (M_PI / 180));
     setup_map(cub);
+    cub->texture = malloc(sizeof(t_texture) * 4);
+
+    cub->texture[0].img = mlx_xpm_file_to_image(cub->mlx, "textures/Stoneflag.xpm", &cub->texture[0].width, &cub->texture[0].height);
+    cub->texture[0].data = mlx_get_data_addr(cub->texture[0].img, &cub->texture[0].bpp, &cub->texture[0].size_line, &cub->texture[0].endian);
+    cub->texture[1].img = mlx_xpm_file_to_image(cub->mlx, "textures/StoneHitler.xpm", &cub->texture[1].width, &cub->texture[1].height);
+    cub->texture[1].data = mlx_get_data_addr(cub->texture[1].img, &cub->texture[1].bpp, &cub->texture[1].size_line, &cub->texture[1].endian);
+    cub->texture[2].img = mlx_xpm_file_to_image(cub->mlx, "textures/Blue.xpm", &cub->texture[2].width, &cub->texture[2].height);
+    cub->texture[2].data = mlx_get_data_addr(cub->texture[2].img, &cub->texture[2].bpp, &cub->texture[2].size_line, &cub->texture[2].endian);
+    cub->texture[3].img = mlx_xpm_file_to_image(cub->mlx, "textures/wall.xpm", &cub->texture[3].width, &cub->texture[3].height);
+    cub->texture[3].data = mlx_get_data_addr(cub->texture[3].img, &cub->texture[3].bpp, &cub->texture[3].size_line, &cub->texture[3].endian);
     rander_map(cub);
     mlx_hook(cub->win, 2, 0, &draw_map, cub);
 	mlx_loop(cub->mlx);
-    
-}
+
+} 

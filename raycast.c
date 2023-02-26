@@ -6,7 +6,7 @@
 /*   By: akhouya <akhouya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 13:22:32 by akhouya           #+#    #+#             */
-/*   Updated: 2023/02/24 20:37:53 by akhouya          ###   ########.fr       */
+/*   Updated: 2023/02/26 12:33:14 by akhouya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void lineray(t_cub *cub, double angle, int i) {
     int x1 = cub->player.x;
     int y1 = cub->player.y;
-    int x2 = x1 + cos(angle) * 1000;
-    int y2 = y1 + sin(angle) * 1000;
+    int x2 = x1 + cos(angle) * 10000;
+    int y2 = y1 + sin(angle) * 10000;
     int dx = abs(x2 - x1);
     int dy = abs(y2 - y1);
     int sx = (x1 < x2) ? 1 : -1;
