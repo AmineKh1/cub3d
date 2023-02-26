@@ -6,7 +6,7 @@
 /*   By: heloufra <heloufra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 00:32:12 by heloufra          #+#    #+#             */
-/*   Updated: 2023/02/25 23:45:46 by heloufra         ###   ########.fr       */
+/*   Updated: 2023/02/26 14:52:53 by heloufra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,11 @@ int     parser_texture(t_cub *cub, char **lines)
     }
     if (valid_textures(cub))
         return (1);
-    if (buffer_textures(cub))
-        return (1);
     printf("Error missing texture\n");
     return (0);
 }
 
-int    buffer_textures(t_cub *cub)
-{
-    cub->NO_texture.img_ptr = mlx_xpm_file_to_image(cub->mlx, cub->NO, &cub->NO_texture.width, &cub->NO_texture.height);
-}
+
 
 int    get_texture(t_cub *cub, char *line)
 {

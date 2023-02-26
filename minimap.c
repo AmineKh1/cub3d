@@ -6,7 +6,7 @@
 /*   By: heloufra <heloufra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 13:36:33 by akhouya           #+#    #+#             */
-/*   Updated: 2023/02/25 22:55:34 by heloufra         ###   ########.fr       */
+/*   Updated: 2023/02/26 16:26:09 by heloufra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void key_press(t_cub *cub, int codekey) {
     double angle = cub->player.rotationangle * M_PI / 180;
-    double move_speed = 1;
+    double move_speed = cub->player.movespeed;
     double x_move = 0;
     double y_move = 0;
 
@@ -48,6 +48,8 @@ void key_press(t_cub *cub, int codekey) {
     else if (codekey == 53) { // esc
         exit(0);
     }
+    // else
+    //     return;
     x_move = cub->player.x + (move_speed * x_move);
     y_move = cub->player.y + (move_speed * y_move);
     //print variables
@@ -94,9 +96,6 @@ void render3d(t_cub *cub) {
     double r = 0;
     int color;
     int g;
-    int h, w, b, endian;
-    cub->north = mlx_xpm_file_to_image(cub->mlx, cub->NO, &w, &h);
-    cub->nobuf = mlx_get_data_addr(cub->north, &b, &cub->size, &endian);
     
     while(i < cub->num_rays) {
         if(cub->rayc[i].distance > 0)
@@ -105,7 +104,7 @@ void render3d(t_cub *cub) {
         if (r > cub->rayc[i].distance || i == 0)
             r = cub->rayc[i].distance;
         d = 50 / cub->rayc[i].distance;
-        if(d > 1)
+        // if(d > 1)
             d = 1;
             // texture
 
@@ -115,26 +114,40 @@ void render3d(t_cub *cub) {
             // West
             g = cub->rayc[i].hitdir == 1 ? create_trgb(1, 255 *d , 0, 0) : cub->rayc[i].hitdir == 2 ? color = create_trgb(1, 0, 255*d, 0) : cub->rayc[i].hitdir == 3 ? create_trgb(1, 0, 0, 255*d) : cub->rayc[i].hitdir == 0  ? create_trgb(1, 255*d, 255*d, 0): create_trgb(1, 0*d, 0*d, 0*d);
                 color = g;
-            
-        renderRectangle(cub, i * cub->wall_strip_width, (cub->window_height / 2) - (wallStripHeight / 2), cub->wall_strip_width, wallStripHeight, color);
+
+        renderRectangle(cub, i * cub->wall_strip_width, (cub->window_height / 2) - (wallStripHeight / 2), cub->wall_strip_width, wallStripHeight, color, 0);
         i++;
     }
 }
 
-int get_color_pixel(t_cub *data, int x, int y)
-{
-    int offset = ;
-	return((int)data->nobuf[offset]);
-}
-
-void renderRectangle(t_cub *cub, int x, int y, int w, int h, int color) {
-    (void)(color);
-    int i, j;
-    for (i = x; i < x + w; i++) {
-        for (j = y; j < y + h; j++)
-        {
-            my_mlx_pixel_put(cub, i, j, get_color_pixel(cub,));
-            // my_mlx_pixel_put(cub, i, j, color);
+void renderRectangle(t_cub *cub, int x, int y, int w, int h, int hit, int ri) {
+    int  j, n;
+    int i;
+    int b;
+    i = x;
+    int hitx, hity;
+    (void)w;
+    hitx = round(cub->rayc[ri].hitx);
+    hity = round(cub->rayc[ri].hity);
+    // find horizontal and virtical by hitderction
+    // if (hit == 3 || hit == 0)
+    //     i = hitx % 64;
+    // else if(hit == 1 || hit == 2)
+    //     i = hity % 64;
+    // else
+    //     i = -1;
+    // b = j;
+ // for(i = x; i < x + w; i++) {
+    for (j = y; j < y + h; j++) {
+            // n = (j - y) * (float)64 / h;
+            // if (i == -1) {
+            //     my_mlx_pixel_put(cub, x, j, 0x000000);
+            // }
+            // else
+            my_mlx_pixel_put(cub, x, j, hit);
+            
         }
+        // exit(0);
+// }
+        
     }
-}

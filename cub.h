@@ -6,7 +6,7 @@
 /*   By: heloufra <heloufra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 11:08:28 by akhouya           #+#    #+#             */
-/*   Updated: 2023/02/25 23:45:13 by heloufra         ###   ########.fr       */
+/*   Updated: 2023/02/26 14:51:19 by heloufra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,17 +50,21 @@ typedef struct s_player {
     double movespeed;
     double rotationSpeed;
 } t_player;
-
-typedef struct s_img
-{
-    void    *img_ptr;
-    char    *buff;
-    int     bpp;
-    int     size_line;
-    int     endian;
-}   t_img;
-
+typedef struct s_texture {
+    void *img;
+    char *data;
+    int width;
+    int height;
+    int size_line;
+    int bpp;
+    int endian;
+} t_texture;
 typedef struct s_cub {
+    char *adress;
+    int sz;
+    int bts;
+    int ind;
+    void *imagewall;
     void    *mlx;
     void    *win;
     char    **map;
@@ -83,11 +87,7 @@ typedef struct s_cub {
     int wall_strip_width;
     t_rayc   *rayc;
     t_player player;
-    t_img   NO_texture;
-    t_img   SO_texture;
-    t_img   WE_texture;
-    t_img   EA_texture;
-    int     size;
+    t_texture *texture;
 }   t_cub;
 
 
@@ -99,13 +99,13 @@ int	create_trgb(int t, int r, int g, int b);
 int haswall(int x, int y, t_cub *cub, int i);
 void key_press(t_cub *cub, int codekey);
 void update_map(t_cub *cub, int codekey);
-void renderRectangle(t_cub *cub, int x, int y, int w, int h, int color) ;
+void renderRectangle(t_cub *cub, int x, int y, int w, int h, int hit, int ri);
 void render3d(t_cub *cub);
 void update_map(t_cub *cub, int codekey);
 void	my_mlx_pixel_put(t_cub *data, int x, int y, int color);
 int haswallplayer(int x, int y, t_cub *cub);
 void renderciel(t_cub *cub);
-
+int	my_mlx_color(t_cub *data, int x, int y, int i);
 int    parser(t_cub *cub, char *file);
 int     verify_file(char **lines);
 int     is_color(char *line);
