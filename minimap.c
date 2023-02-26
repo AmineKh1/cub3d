@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akhouya <akhouya@student.42.fr>            +#+  +:+       +#+        */
+/*   By: heloufra <heloufra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 13:36:33 by akhouya           #+#    #+#             */
-/*   Updated: 2023/02/24 16:10:31 by akhouya          ###   ########.fr       */
+/*   Updated: 2023/02/25 22:55:34 by heloufra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void key_press(t_cub *cub, int codekey) {
     double angle = cub->player.rotationangle * M_PI / 180;
-    double move_speed = cub->player.movespeed;
+    double move_speed = 1;
     double x_move = 0;
     double y_move = 0;
 
@@ -43,12 +43,15 @@ void key_press(t_cub *cub, int codekey) {
         cub->player.rotationangle -= 5;
         if (cub->player.rotationangle < 0)
             cub->player.rotationangle = 360;
+        
     }
     else if (codekey == 53) { // esc
         exit(0);
     }
     x_move = cub->player.x + (move_speed * x_move);
     y_move = cub->player.y + (move_speed * y_move);
+    //print variables
+    // printf("x_move: %f  y_move: %f angle: %f cos: %f  sin: %f cub->player.x: %f  cub->player.y: %f\n", x_move, y_move, angle, cos(angle), sin(angle), cub->player.x, cub->player.y);
     if(haswallplayer(x_move, y_move, cub) == 0)
         return ;
     cub->player.x = round(x_move);
@@ -91,6 +94,10 @@ void render3d(t_cub *cub) {
     double r = 0;
     int color;
     int g;
+    int h, w, b, endian;
+    cub->north = mlx_xpm_file_to_image(cub->mlx, cub->NO, &w, &h);
+    cub->nobuf = mlx_get_data_addr(cub->north, &b, &cub->size, &endian);
+    
     while(i < cub->num_rays) {
         if(cub->rayc[i].distance > 0)
             wallStripHeight = (cub->cubpx / (cub->rayc[i].distance * cos((cub->rayc[i].rayangle - cub->player.rotationangle* M_PI / 180)))) * distanceProjPlane;
@@ -100,20 +107,34 @@ void render3d(t_cub *cub) {
         d = 50 / cub->rayc[i].distance;
         if(d > 1)
             d = 1;
+            // texture
+
+            // North
+            // East
+            // South
+            // West
             g = cub->rayc[i].hitdir == 1 ? create_trgb(1, 255 *d , 0, 0) : cub->rayc[i].hitdir == 2 ? color = create_trgb(1, 0, 255*d, 0) : cub->rayc[i].hitdir == 3 ? create_trgb(1, 0, 0, 255*d) : cub->rayc[i].hitdir == 0  ? create_trgb(1, 255*d, 255*d, 0): create_trgb(1, 0*d, 0*d, 0*d);
                 color = g;
-        
+            
         renderRectangle(cub, i * cub->wall_strip_width, (cub->window_height / 2) - (wallStripHeight / 2), cub->wall_strip_width, wallStripHeight, color);
         i++;
     }
 }
 
+int get_color_pixel(t_cub *data, int x, int y)
+{
+    int offset = ;
+	return((int)data->nobuf[offset]);
+}
+
 void renderRectangle(t_cub *cub, int x, int y, int w, int h, int color) {
+    (void)(color);
     int i, j;
     for (i = x; i < x + w; i++) {
-        for (j = y; j < y + h; j++) {
-
-            my_mlx_pixel_put(cub, i, j, color);
+        for (j = y; j < y + h; j++)
+        {
+            my_mlx_pixel_put(cub, i, j, get_color_pixel(cub,));
+            // my_mlx_pixel_put(cub, i, j, color);
         }
     }
 }

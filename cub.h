@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akhouya <akhouya@student.42.fr>            +#+  +:+       +#+        */
+/*   By: heloufra <heloufra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 11:08:28 by akhouya           #+#    #+#             */
-/*   Updated: 2023/02/24 15:56:19 by akhouya          ###   ########.fr       */
+/*   Updated: 2023/02/25 23:45:13 by heloufra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 #define LINES 14
 #define ROWS 37
 #define CUBPX 32
-#define WINDOW_WIDTH (ROWS * CUBPX)
-#define WINDOWS_HEIGHT (LINES * CUBPX)
+#define WINDOW_WIDTH 1200
+#define WINDOWS_HEIGHT 600
 #define FOV_ANGLE (60 * (M_PI / 180))
 #define WALL_STRIP_WIDTH 1
 #define NUM_RAYS (WINDOW_WIDTH / WALL_STRIP_WIDTH)
@@ -51,6 +51,15 @@ typedef struct s_player {
     double rotationSpeed;
 } t_player;
 
+typedef struct s_img
+{
+    void    *img_ptr;
+    char    *buff;
+    int     bpp;
+    int     size_line;
+    int     endian;
+}   t_img;
+
 typedef struct s_cub {
     void    *mlx;
     void    *win;
@@ -74,7 +83,11 @@ typedef struct s_cub {
     int wall_strip_width;
     t_rayc   *rayc;
     t_player player;
-    
+    t_img   NO_texture;
+    t_img   SO_texture;
+    t_img   WE_texture;
+    t_img   EA_texture;
+    int     size;
 }   t_cub;
 
 

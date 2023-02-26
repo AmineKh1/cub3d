@@ -1,7 +1,0 @@
-{
-    "files.associations": {
-        "ios": "c",
-        "chrono": "c",
-        "sstream": "c"
-    }
-}
