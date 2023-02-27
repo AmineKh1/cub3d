@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: heloufra <heloufra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akhouya <akhouya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 11:08:28 by akhouya           #+#    #+#             */
-/*   Updated: 2023/02/27 11:33:36 by heloufra         ###   ########.fr       */
+/*   Updated: 2023/02/27 20:50:50 by akhouya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,20 @@ typedef struct s_rayc {
 	double hity;
 	double hitx;
 	double distance;
-	int hitdir; // 'E' for east, 'W' for westm 'N' 'north', 'S' 'south'
+	int hitdir;
 } t_rayc;
-
+typedef struct s_line {
+	int x1;
+	int y1;
+	int x2;
+	int y2;
+	int dx;
+	int dy;
+	int sx;
+	int sy;
+	int err;
+	int e2;
+}	t_line;
 typedef struct s_player {
 	double x;
 	double y;
@@ -66,6 +77,8 @@ typedef struct s_cub {
 	int sz;
 	int bts;
 	int ind;
+	double	x_move;
+	double	y_move;
 	void *imagewall;
 	void    *mlx;
 	void    *win;

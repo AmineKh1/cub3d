@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: heloufra <heloufra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akhouya <akhouya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 13:16:33 by akhouya           #+#    #+#             */
-/*   Updated: 2023/02/27 11:48:11 by heloufra         ###   ########.fr       */
+/*   Updated: 2023/02/27 18:29:52 by akhouya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void setup_map(t_cub *cub) {
     cub->player.turnDirection = 0;
     cub->player.movespeed = 5;
     cub->player.rotationangle = 90;
-    cub->player.rotationSpeed = 5 * (M_PI / 180);
+    cub->player.rotationSpeed = 3 * (M_PI / 180);
     cub->player.walkDirection = 0;
     int i = -1;
     int j = 0;
@@ -46,25 +46,13 @@ void setup_map(t_cub *cub) {
         {
             if(cub->map[i][j] != '\0' && (cub->map[i][j] == 'W' || cub->map[i][j] == 'E' || cub->map[i][j] == 'N' || cub->map[i][j] == 'S'))
             {
-                cub->player.x = j * cub->cubpx;
-                cub->player.y = i * cub->cubpx;
+                cub->player.x = j * cub->cubpx + 16;
+                cub->player.y = i * cub->cubpx + 16;
             }
         }
     }
-    // buffer images
 }
 
-// void    buffer_textures(t_cub *cub)
-// {
-//     // North texture
-//     // cub->north = mlx_xpm_file_to_image(cub->mlx, cub->NO, , );
-//     // South texture
-  
-//     // West texture
-
-//     // East texture
-    
-// }
 
 void draw_pixels(int color, int x, int y, t_cub *cub) {
     int i = -1;
