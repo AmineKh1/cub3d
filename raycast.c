@@ -6,7 +6,7 @@
 /*   By: heloufra <heloufra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 13:22:32 by akhouya           #+#    #+#             */
-/*   Updated: 2023/02/26 17:11:44 by heloufra         ###   ########.fr       */
+/*   Updated: 2023/02/27 11:50:17 by heloufra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	create_trgb(int t, int r, int g, int b)
 }
 #include <stdio.h>
 int haswall(int x, int y, t_cub *cub, int i) {
-    if(x < 0 || x > cub->window_width || y < 0 || y > cub->window_height)
+    if(x < 0 || x > (cub->cubpx * cub->row) || y < 0 || y > (cub->cubpx * cub->line))
         return 0;
     int indx = floor(x / cub->cubpx);
     int indy = floor(y / cub->cubpx);
@@ -110,7 +110,7 @@ int haswall(int x, int y, t_cub *cub, int i) {
     return 1;
 }
 int haswallplayer(int x, int y, t_cub *cub) {
-    if(x < 0 || x > cub->window_width || y < 0 || y > cub->window_height)
+    if(x < 0 || x > (cub->cubpx * cub->row) || y < 0 || y > (cub->cubpx * cub->line))
         return 0;
     
     int indx = floor((x + 1 ) / cub->cubpx);

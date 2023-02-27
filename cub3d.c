@@ -6,7 +6,7 @@
 /*   By: heloufra <heloufra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 13:16:33 by akhouya           #+#    #+#             */
-/*   Updated: 2023/02/27 10:52:19 by heloufra         ###   ########.fr       */
+/*   Updated: 2023/02/27 11:48:11 by heloufra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,32 +169,32 @@ int main(int argc, char *argv[]) {
         printf("%s\n", cub->map[i]);
         i++;
     }
-    // cub->minimap = 0.2;
-    // cub->cubpx = 64;
-    // cub->wall_strip_width = 1;
-    // cub->window_height = 1080;
-    // cub->window_width = 1080;
-    // cub->cubpx = 64;
-    // cub->num_rays = cub->window_width / cub->wall_strip_width;
-    // cub->rayc = malloc(cub->num_rays * sizeof(t_rayc));
+    cub->minimap = 0.2;
+    cub->cubpx = 64;
+    cub->wall_strip_width = 1;
+    cub->window_height = 1080;
+    cub->window_width = 1080;
+    cub->cubpx = 64;
+    cub->num_rays = cub->window_width / cub->wall_strip_width;
+    cub->rayc = malloc(cub->num_rays * sizeof(t_rayc));
 
  
 
     // // exit(0);
-    // cub->fov_angle = (60 * (M_PI / 180));
-    // setup_map(cub);
-    // cub->texture = malloc(sizeof(t_texture) * 4);
+    cub->fov_angle = (60 * (M_PI / 180));
+    setup_map(cub);
+    cub->texture = malloc(sizeof(t_texture) * 4);
 
-    // cub->texture[0].img = mlx_xpm_file_to_image(cub->mlx, "textures/Stoneflag.xpm", &cub->texture[0].width, &cub->texture[0].height);
-    // cub->texture[0].data = mlx_get_data_addr(cub->texture[0].img, &cub->texture[0].bpp, &cub->texture[0].size_line, &cub->texture[0].endian);
-    // cub->texture[1].img = mlx_xpm_file_to_image(cub->mlx, "textures/StoneHitler.xpm", &cub->texture[1].width, &cub->texture[1].height);
-    // cub->texture[1].data = mlx_get_data_addr(cub->texture[1].img, &cub->texture[1].bpp, &cub->texture[1].size_line, &cub->texture[1].endian);
-    // cub->texture[2].img = mlx_xpm_file_to_image(cub->mlx, "textures/Blue.xpm", &cub->texture[2].width, &cub->texture[2].height);
-    // cub->texture[2].data = mlx_get_data_addr(cub->texture[2].img, &cub->texture[2].bpp, &cub->texture[2].size_line, &cub->texture[2].endian);
-    // cub->texture[3].img = mlx_xpm_file_to_image(cub->mlx, "textures/wall.xpm", &cub->texture[3].width, &cub->texture[3].height);
-    // cub->texture[3].data = mlx_get_data_addr(cub->texture[3].img, &cub->texture[3].bpp, &cub->texture[3].size_line, &cub->texture[3].endian);
-    // rander_map(cub);
-    // mlx_hook(cub->win, 2, 0, &draw_map, cub);
-	// mlx_loop(cub->mlx);
+    cub->texture[0].img = mlx_xpm_file_to_image(cub->mlx, "textures/Stoneflag.xpm", &cub->texture[0].width, &cub->texture[0].height);
+    cub->texture[0].data = mlx_get_data_addr(cub->texture[0].img, &cub->texture[0].bpp, &cub->texture[0].size_line, &cub->texture[0].endian);
+    cub->texture[1].img = mlx_xpm_file_to_image(cub->mlx, "textures/StoneHitler.xpm", &cub->texture[1].width, &cub->texture[1].height);
+    cub->texture[1].data = mlx_get_data_addr(cub->texture[1].img, &cub->texture[1].bpp, &cub->texture[1].size_line, &cub->texture[1].endian);
+    cub->texture[2].img = mlx_xpm_file_to_image(cub->mlx, "textures/Blue.xpm", &cub->texture[2].width, &cub->texture[2].height);
+    cub->texture[2].data = mlx_get_data_addr(cub->texture[2].img, &cub->texture[2].bpp, &cub->texture[2].size_line, &cub->texture[2].endian);
+    cub->texture[3].img = mlx_xpm_file_to_image(cub->mlx, "textures/wall.xpm", &cub->texture[3].width, &cub->texture[3].height);
+    cub->texture[3].data = mlx_get_data_addr(cub->texture[3].img, &cub->texture[3].bpp, &cub->texture[3].size_line, &cub->texture[3].endian);
+    rander_map(cub);
+    mlx_hook(cub->win, 2, 0, &draw_map, cub);
+	mlx_loop(cub->mlx);
 
 } 

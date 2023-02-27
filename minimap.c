@@ -6,7 +6,7 @@
 /*   By: heloufra <heloufra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 13:36:33 by akhouya           #+#    #+#             */
-/*   Updated: 2023/02/26 16:26:09 by heloufra         ###   ########.fr       */
+/*   Updated: 2023/02/27 11:51:21 by heloufra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ void render3d(t_cub *cub) {
             g = cub->rayc[i].hitdir == 1 ? create_trgb(1, 255 *d , 0, 0) : cub->rayc[i].hitdir == 2 ? color = create_trgb(1, 0, 255*d, 0) : cub->rayc[i].hitdir == 3 ? create_trgb(1, 0, 0, 255*d) : cub->rayc[i].hitdir == 0  ? create_trgb(1, 255*d, 255*d, 0): create_trgb(1, 0*d, 0*d, 0*d);
                 color = g;
 
-        renderRectangle(cub, i * cub->wall_strip_width, (cub->window_height / 2) - (wallStripHeight / 2), cub->wall_strip_width, wallStripHeight, color, 0);
+        renderRectangle(cub, i * cub->wall_strip_width, (cub->window_height / 2) - (wallStripHeight / 2), cub->wall_strip_width, wallStripHeight, cub->rayc[i].hitdir, i);
         i++;
     }
 }
@@ -130,24 +130,24 @@ void renderRectangle(t_cub *cub, int x, int y, int w, int h, int hit, int ri) {
     hitx = round(cub->rayc[ri].hitx);
     hity = round(cub->rayc[ri].hity);
     // find horizontal and virtical by hitderction
-    // if (hit == 3 || hit == 0)
-    //     i = hitx % 64;
-    // else if(hit == 1 || hit == 2)
-    //     i = hity % 64;
-    // else
-    //     i = -1;
-    // b = j;
- // for(i = x; i < x + w; i++) {
+    if (hit == 3 || hit == 0)
+        i = hitx % 64;
+    else if(hit == 1 || hit == 2)
+        i = hity % 64;
+    else
+        i = -1;
+    b = j;
+ for(i = x; i < x + w; i++) {
     for (j = y; j < y + h; j++) {
-            // n = (j - y) * (float)64 / h;
-            // if (i == -1) {
-            //     my_mlx_pixel_put(cub, x, j, 0x000000);
-            // }
-            // else
+            n = (j - y) * (float)64 / h;
+            if (i == -1) {
+                my_mlx_pixel_put(cub, x, j, 0x000000);
+            }
+            else
             my_mlx_pixel_put(cub, x, j, hit);
             
         }
         // exit(0);
-// }
+}
         
     }
