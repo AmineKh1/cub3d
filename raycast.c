@@ -6,7 +6,7 @@
 /*   By: heloufra <heloufra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 13:22:32 by akhouya           #+#    #+#             */
-/*   Updated: 2023/02/26 17:07:09 by heloufra         ###   ########.fr       */
+/*   Updated: 2023/02/26 17:11:44 by heloufra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,6 @@ int haswall(int x, int y, t_cub *cub, int i) {
     {
         if(i > 0)
         cub->rayc[i].hitdir = 4;
-        
-    
     }
     return 0;
     }

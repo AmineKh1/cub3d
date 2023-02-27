@@ -6,7 +6,7 @@
 /*   By: heloufra <heloufra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 11:08:28 by akhouya           #+#    #+#             */
-/*   Updated: 2023/02/26 14:51:19 by heloufra         ###   ########.fr       */
+/*   Updated: 2023/02/27 11:33:36 by heloufra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,79 +33,81 @@
 #define MINIMAP 0.2
 
 typedef struct s_rayc {
-    double rayangle;
-    double hity;
-    double hitx;
-    double distance;
-    int hitdir; // 'E' for east, 'W' for westm 'N' 'north', 'S' 'south'
+	double rayangle;
+	double hity;
+	double hitx;
+	double distance;
+	int hitdir; // 'E' for east, 'W' for westm 'N' 'north', 'S' 'south'
 } t_rayc;
 
 typedef struct s_player {
-    double x;
-    double y;
-    double radius;
-    double turnDirection;
-    double walkDirection;
-    double rotationangle;
-    double movespeed;
-    double rotationSpeed;
+	double x;
+	double y;
+	double radius;
+	double turnDirection;
+	double walkDirection;
+	double rotationangle;
+	double movespeed;
+	double rotationSpeed;
 } t_player;
+
 typedef struct s_texture {
-    void *img;
-    char *data;
-    int width;
-    int height;
-    int size_line;
-    int bpp;
-    int endian;
+	void *img;
+	char *data;
+	int width;
+	int height;
+	int size_line;
+	int bpp;
+	int endian;
 } t_texture;
+
 typedef struct s_cub {
-    char *adress;
-    int sz;
-    int bts;
-    int ind;
-    void *imagewall;
-    void    *mlx;
-    void    *win;
-    char    **map;
-    char    *SO;
-    char    *NO;
-    char    *WE;
-    char    *EA;
-    int     F;
-    int     C;
-    void    *img_ptr;
-    int    *data;
-    int     row;
-    int     line;
-    int cubpx;
-    int window_width;
-    int window_height;
-    double fov_angle;
-    int num_rays;
-    float minimap;
-    int wall_strip_width;
-    t_rayc   *rayc;
-    t_player player;
-    t_texture *texture;
+	char *adress;
+	int sz;
+	int bts;
+	int ind;
+	void *imagewall;
+	void    *mlx;
+	void    *win;
+	char    **map;
+	char    *SO;
+	char    *NO;
+	char    *WE;
+	char    *EA;
+	int     F;
+	int     C;
+	void    *img_ptr;
+	int    *data;
+	int     row;
+	int     line;
+	int cubpx;
+	int window_width;
+	int window_height;
+	double fov_angle;
+	int num_rays;
+	float minimap;
+	int wall_strip_width;
+	t_rayc   *rayc;
+	t_player player;
+	t_texture *texture;
 }   t_cub;
 
 
 void lineray(t_cub *cub, double angle, int i);
 void renderRay(t_cub *cub, double angle, int i);
 void castAllRays(t_cub *cub);
-double distanceBetweenPoints(int x1, int y1, int x2, int y2);
-int	create_trgb(int t, int r, int g, int b);
-int haswall(int x, int y, t_cub *cub, int i);
-void key_press(t_cub *cub, int codekey);
-void update_map(t_cub *cub, int codekey);
-void renderRectangle(t_cub *cub, int x, int y, int w, int h, int hit, int ri);
-void render3d(t_cub *cub);
-void update_map(t_cub *cub, int codekey);
+double  distanceBetweenPoints(int x1, int y1, int x2, int y2);
+int		create_trgb(int t, int r, int g, int b);
+int     haswall(int x, int y, t_cub *cub, int i);
+void    key_press(t_cub *cub, int codekey);
+void    update_map(t_cub *cub, int codekey);
+void    renderRectangle(t_cub *cub, int x, int y, int w, int h, int hit, int ri);
+void    render3d(t_cub *cub);
+void    update_map(t_cub *cub, int codekey);
 void	my_mlx_pixel_put(t_cub *data, int x, int y, int color);
-int haswallplayer(int x, int y, t_cub *cub);
-void renderciel(t_cub *cub);
-int	my_mlx_color(t_cub *data, int x, int y, int i);
+int     haswallplayer(int x, int y, t_cub *cub);
+void    renderciel(t_cub *cub);
+int     my_mlx_color(t_cub *data, int x, int y, int i);
 int    parser(t_cub *cub, char *file);
 int     verify_file(char **lines);
 int     is_color(char *line);
@@ -134,6 +136,8 @@ int     valid_map_space(t_cub *cub, int i, int j);
 int     valid_map(t_cub *cub);
 int     get_map(t_cub *cub, char **line);
 int     is_map(char *line);
-
+char	**get_rgb(char *line);
+int     get_index_of_map(char **lines);
+int     set_textures(t_cub *cub);
 
 #endif

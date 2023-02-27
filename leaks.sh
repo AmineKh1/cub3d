@@ -1,5 +1,5 @@
 while :
 do
-    leaks cub3d | grep bytes
-    sleep 1
+    leaks cub3D | grep bytes
+    sleep 3
 done

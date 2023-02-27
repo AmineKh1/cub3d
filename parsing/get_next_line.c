@@ -6,12 +6,12 @@
 /*   By: heloufra <heloufra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 23:38:27 by heloufra          #+#    #+#             */
-/*   Updated: 2023/02/22 22:57:33 by heloufra         ###   ########.fr       */
+/*   Updated: 2023/02/27 09:13:45 by heloufra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./libft/libft.h"
-# define BUFFER_SIZE 100
+#include "../libft/libft.h"
+#define BUFFER_SIZE 100
 
 static char	*extract_line(char **saved)
 {
