@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akhouya <akhouya@student.42.fr>            +#+  +:+       +#+        */
+/*   By: heloufra <heloufra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 19:14:42 by akhouya           #+#    #+#             */
-/*   Updated: 2023/02/28 11:09:08 by akhouya          ###   ########.fr       */
+/*   Updated: 2023/02/28 18:04:34 by heloufra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,8 @@ void	renderray(t_cub *cub, double angle, int i)
 	lineray(cub, angle, i);
 }
 
-void	castAllRays(t_cub *cub) {
+void	castallrays(t_cub *cub)
+{
 	double	rayangle;
 	int		i;
 

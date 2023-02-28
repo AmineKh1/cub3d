@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minimap.c                                          :+:      :+:    :+:   */
+/*   render3d.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akhouya <akhouya@student.42.fr>            +#+  +:+       +#+        */
+/*   By: heloufra <heloufra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 13:36:33 by akhouya           #+#    #+#             */
-/*   Updated: 2023/02/28 13:39:29 by akhouya          ###   ########.fr       */
+/*   Updated: 2023/02/28 18:00:49 by heloufra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ void	renderciel(t_cub *cub)
 	{
 		j = -1;
 		while (++j < cub->window_width)
-			my_mlx_pixel_put(cub, j, i, cub->C);
+			my_mlx_pixel_put(cub, j, i, cub->c);
 	}
 	i = cub->window_height / 2;
 	while (i < cub->window_height)
 	{
 		j = -1;
 		while (++j < cub->window_width)
-			my_mlx_pixel_put(cub, j, i, cub->F);
+			my_mlx_pixel_put(cub, j, i, cub->f);
 		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: heloufra <heloufra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 23:02:18 by heloufra          #+#    #+#             */
-/*   Updated: 2023/02/27 10:46:28 by heloufra         ###   ########.fr       */
+/*   Updated: 2023/02/28 18:01:29 by heloufra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,12 @@ int	parser(t_cub *cub, char *file)
 		free_array_string(lines);
 		return (0);
 	}
-	cub->C = -1;
-	cub->F = -1;
+	cub->c = -1;
+	cub->f = -1;
 	if (parser_texture(cub, lines) == 0
 		|| parser_color(cub, lines) == 0 || parser_map(cub, lines) == 0)
 	{
 		free_array_string(lines);
-		// system("leaks cub3D");
 		return (0);
 	}
 	t_cub_init(cub);
@@ -58,9 +57,9 @@ int	get_color(t_cub *cub, char *line)
 		color = r << 16 | g << 8 | b;
 			line = advance_whitespace(line);
 		if (line[0] == 'F')
-			cub->F = color;
+			cub->f = color;
 		else if (line[0] == 'C')
-			cub->C = color;
+			cub->c = color;
 		return (1);
 	}
 	printf("Error : Invalid color\n");

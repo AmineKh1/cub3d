@@ -6,7 +6,7 @@
 /*   By: heloufra <heloufra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 00:49:14 by heloufra          #+#    #+#             */
-/*   Updated: 2023/02/27 10:18:16 by heloufra         ###   ########.fr       */
+/*   Updated: 2023/02/28 18:02:10 by heloufra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	parser_color(t_cub *cub, char **lines)
 
 int	valid_colors(t_cub *cub)
 {
-	if (cub->F > 0 && cub->C > 0)
+	if (cub->f > 0 && cub->c > 0)
 		return (1);
 	return (0);
 }
