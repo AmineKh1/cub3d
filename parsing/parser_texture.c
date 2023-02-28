@@ -6,7 +6,7 @@
 /*   By: heloufra <heloufra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 00:32:12 by heloufra          #+#    #+#             */
-/*   Updated: 2023/02/28 18:05:46 by heloufra         ###   ########.fr       */
+/*   Updated: 2023/02/28 18:51:58 by heloufra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,21 @@ int	set_texture(t_cub *cub, char *path, char *texture_type)
 
 int	set_textures(t_cub *cub)
 {
-	(void)cub;
-	return (1);
+	cub->texture = malloc(sizeof(t_texture) * 4);
+	if (!cub->texture)
+		return (0);
+	cub->texture[0].img = mlx_xpm_file_to_image(cub->mlx, cub->no,
+			&cub->texture[0].width, &cub->texture[0].height);
+	cub->texture[1].img = mlx_xpm_file_to_image(cub->mlx, cub->so,
+			&cub->texture[1].width, &cub->texture[1].height);
+	cub->texture[2].img = mlx_xpm_file_to_image(cub->mlx, cub->we,
+			&cub->texture[2].width, &cub->texture[2].height);
+	cub->texture[3].img = mlx_xpm_file_to_image(cub->mlx, cub->ea,
+			&cub->texture[3].width, &cub->texture[3].height);
+	if (cub->texture->img == NULL || cub->texture[1].img == NULL
+		|| cub->texture[2].img == NULL || cub->texture[3].img == NULL)
+		return (0);
+	return (set_textures_get_data(cub));
 }
 
 int	get_texture(t_cub *cub, char *line)
@@ -73,7 +86,7 @@ int	get_texture(t_cub *cub, char *line)
 		free(tmp);
 		free(tex);
 		free(path);
-		printf("Error tex file not found\n");
+		printf("Error\n");
 		return (0);
 	}
 	close(fd);
@@ -87,19 +100,3 @@ int	valid_textures(t_cub *cub)
 		return (1);
 	return (0);
 }
-
-/*
-int main(int argc, char **argv)
-{
-	t_cub *cub;
-	char **lines;
-	int     ret;
-	
-	if (argc != 2)
-		return (0);
-	cub = ft_calloc(1, sizeof(t_cub));
-	lines = read_file(argv[1]);
-	ret = parser_texture(cub, lines);
-	printf("ret = %d\n", ret);
-	return (0);
-} */

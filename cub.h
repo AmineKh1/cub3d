@@ -6,7 +6,7 @@
 /*   By: heloufra <heloufra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 11:08:28 by akhouya           #+#    #+#             */
-/*   Updated: 2023/02/28 18:04:03 by heloufra         ###   ########.fr       */
+/*   Updated: 2023/02/28 18:38:31 by heloufra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,4 +168,8 @@ int		is_map(char *line);
 char	**get_rgb(char *line);
 int		get_index_of_map(char **lines);
 int		set_textures(t_cub *cub);
+void	render_map_loop(t_cub *cub, int i, int j);
+int		set_textures_get_data(t_cub *cub);
+void	draw_pixels(int color, int x, int y, t_cub *cub);
+void	setup_map(t_cub *cub);
 #endif

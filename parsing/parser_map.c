@@ -6,7 +6,7 @@
 /*   By: heloufra <heloufra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 02:40:14 by heloufra          #+#    #+#             */
-/*   Updated: 2023/02/28 18:05:16 by heloufra         ###   ########.fr       */
+/*   Updated: 2023/02/28 18:39:02 by heloufra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,8 @@ int	valid_map_space(t_cub *cub, int i, int j)
 	int	len;
 
 	len = array_len(cub->map);
-	if (j == 0 || i == 0 || i == len - 1 || j == ft_strlen(cub->map[i]) - 1)
+	if (j == 0 || i == 0 || i == len - 1
+		|| j == (int)ft_strlen(cub->map[i]) - 1)
 		return (0);
 	if ((ft_isspace(cub->map[i - 1][j - 1]) || cub->map[i - 1][j - 1] == '\0')
 		|| (ft_isspace(cub->map[i - 1][j]) || cub->map[i - 1][j] == '\0')

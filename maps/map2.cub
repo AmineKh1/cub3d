@@ -3,9 +3,13 @@ C 	0, 0, 139
 NO ./textures/StoneHitler.xpm
 SO ./textures/wall.xpm
 WE ./textures/Blue.xpm
-EA ./textures/Stoneflag.xpm
+EA ./textures/Stoneflag.xm
 
 F 63, 0, 0
+
+
+
+dklsdlkas
 1111111111111111111111111111111111111111111
 1000001101111011110111101111011110000000001
 1000001101111011110111101111011100000000111
