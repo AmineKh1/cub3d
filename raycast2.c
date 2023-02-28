@@ -6,7 +6,7 @@
 /*   By: akhouya <akhouya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 19:14:42 by akhouya           #+#    #+#             */
-/*   Updated: 2023/02/27 19:27:45 by akhouya          ###   ########.fr       */
+/*   Updated: 2023/02/28 11:09:08 by akhouya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,36 @@ void	lineray(t_cub *cub, double angle, int i)
 		}
 		cub->rayc[i].hitx = line.x1;
 		cub->rayc[i].hity = line.y1;
-		cub->rayc[i].distance = distanceBetweenPoints(cub->player.x, cub->player.y, line.x1, line.y1);
+		cub->rayc[i].distance = distancebetweenpoints(cub->player.x,
+				cub->player.y, line.x1, line.y1);
 		if (haswall(line.x1, line.y1, cub, i) == 0)
 			return ;
-		my_mlx_pixel_put(cub, (cub->minimap * line.x1), (cub->minimap * line.y1), create_trgb(1, 136, 8, 8));
+		my_mlx_pixel_put(cub, (cub->minimap * line.x1),
+			(cub->minimap * line.y1), create_trgb(1, 136, 8, 8));
 	}
 }
 
-void 	renderRay(t_cub *cub, double angle, int i)
+void	renderray(t_cub *cub, double angle, int i)
 {
 	lineray(cub, angle, i);
+}
+
+void	castAllRays(t_cub *cub) {
+	double	rayangle;
+	int		i;
+
+	i = 0;
+	rayangle = (cub->player.rotationangle * M_PI / 180) - (cub->fov_angle / 2);
+	while (i < cub->num_rays)
+	{
+		rayangle += (cub->fov_angle) / cub->num_rays;
+		cub->rayc[i].rayangle = rayangle;
+		renderray(cub, rayangle, i);
+		i++;
+	}
+}
+
+int	create_trgb(int t, int r, int g, int b)
+{
+	return (t << 24 | r << 16 | g << 8 | b);
 }

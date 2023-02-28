@@ -6,7 +6,7 @@
 /*   By: akhouya <akhouya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 11:08:28 by akhouya           #+#    #+#             */
-/*   Updated: 2023/02/27 20:50:50 by akhouya          ###   ########.fr       */
+/*   Updated: 2023/02/28 13:33:58 by akhouya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,13 @@
 #define WALL_STRIP_WIDTH 1
 #define NUM_RAYS (WINDOW_WIDTH / WALL_STRIP_WIDTH)
 #define MINIMAP 0.2
-
+#define KEY_A 0
+#define KEY_S 1
+#define KEY_D 2
+#define KEY_W 13
+#define KEY_ESC 53
+#define KEY_RIGHT 124
+#define KEY_LEFT 123
 typedef struct s_rayc {
 	double rayangle;
 	double hity;
@@ -71,6 +77,14 @@ typedef struct s_texture {
 	int bpp;
 	int endian;
 } t_texture;
+typedef struct s_renderrctengle {
+	int x;
+	int y;
+	int w;
+	int h;
+	int hit;
+	int ri;
+} t_renderrctengle;
 
 typedef struct s_cub {
 	char *adress;
@@ -79,6 +93,12 @@ typedef struct s_cub {
 	int ind;
 	double	x_move;
 	double	y_move;
+	int		indx;
+	int		indy;
+	double	dist_x;
+	double	dist_y;
+	int		x_grid;
+	int		y_grid;
 	void *imagewall;
 	void    *mlx;
 	void    *win;
@@ -107,14 +127,14 @@ typedef struct s_cub {
 
 
 void lineray(t_cub *cub, double angle, int i);
-void renderRay(t_cub *cub, double angle, int i);
+void renderray(t_cub *cub, double angle, int i);
 void castAllRays(t_cub *cub);
-double  distanceBetweenPoints(int x1, int y1, int x2, int y2);
+double  distancebetweenpoints(int x1, int y1, int x2, int y2);
 int		create_trgb(int t, int r, int g, int b);
 int     haswall(int x, int y, t_cub *cub, int i);
 void    key_press(t_cub *cub, int codekey);
 void    update_map(t_cub *cub, int codekey);
-void    renderRectangle(t_cub *cub, int x, int y, int w, int h, int hit, int ri);
+void    renderrectangle(t_cub *cub, t_renderrctengle rect);
 void    render3d(t_cub *cub);
 void    update_map(t_cub *cub, int codekey);
 void	my_mlx_pixel_put(t_cub *data, int x, int y, int color);
