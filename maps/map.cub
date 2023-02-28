@@ -1,17 +1,11 @@
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
+NO ./textures/StoneHitler.xpm
+SO ./textures/wall.xpm
+WE ./textures/Blue.xpm
+EA ./textures/Stoneflag.xpm
 
+C 63, 0, 0
+F 	0, 0, 139
 
-
-EA ./path_to_the_east_texture
-
-
-C 220,100,0
-F 225,30,0
-
-
-
-1111
-11W11
-1111
+111111111111
+100000N00001
+111111111111

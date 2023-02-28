@@ -6,7 +6,7 @@
 /*   By: heloufra <heloufra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 23:02:18 by heloufra          #+#    #+#             */
-/*   Updated: 2023/02/28 18:01:29 by heloufra         ###   ########.fr       */
+/*   Updated: 2023/02/28 19:17:44 by heloufra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	parser(t_cub *cub, char *file)
 		|| parser_color(cub, lines) == 0 || parser_map(cub, lines) == 0)
 	{
 		free_array_string(lines);
+		printf("Error : Invalid file\n");
 		return (0);
 	}
 	t_cub_init(cub);

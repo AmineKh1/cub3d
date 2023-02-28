@@ -6,7 +6,7 @@
 /*   By: heloufra <heloufra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 00:04:17 by heloufra          #+#    #+#             */
-/*   Updated: 2023/02/27 10:43:39 by heloufra         ###   ########.fr       */
+/*   Updated: 2023/02/28 19:17:57 by heloufra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,23 +53,3 @@ int	is_texture(char *line)
 		return (1);
 	return (0);
 }
-
-/*
-int main(int argc, char **argv)
-{
-	char **lines;
-	
-	if (argc != 2)
-		return (0);
-	lines = read_file(argv[1]);
-	if (!lines)
-		return (0);
-	if (verify_file(lines) == 0)
-	{
-		printf("Error   \n");
-	}
-	else
-		printf("OK\n");
-	return (0);
-}
-*/

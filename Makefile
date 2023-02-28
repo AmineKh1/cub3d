@@ -1,6 +1,6 @@
 NAME = cub3D
 CC = cc
-CFLAGS = -Wall -Wextra -Werror #-fsanitize=address -g3
+CFLAGS = -Wall -Wextra -Werror
 SRC =  cub3d.c norm.c ./parsing/norm.c raycast.c raycast2.c render3d.c update_map.c parsing/get_next_line.c parsing/parser.c parsing/parser_color.c parsing/parser_map.c parsing/parser_texture.c parsing/utils.c parsing/verify_file.c parsing/utils1.c
 OBJ = ${SRC:.c=.o}
 RM = rm -rf

@@ -6,7 +6,7 @@
 /*   By: heloufra <heloufra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 00:32:12 by heloufra          #+#    #+#             */
-/*   Updated: 2023/02/28 18:51:58 by heloufra         ###   ########.fr       */
+/*   Updated: 2023/02/28 19:17:36 by heloufra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	parser_texture(t_cub *cub, char **lines)
 	}
 	if (valid_textures(cub) && set_textures(cub))
 		return (1);
-	printf("Error missing tex\n");
+	printf("Error missing texture\n");
 	return (0);
 }
 
@@ -57,11 +57,11 @@ int	set_textures(t_cub *cub)
 		return (0);
 	cub->texture[0].img = mlx_xpm_file_to_image(cub->mlx, cub->no,
 			&cub->texture[0].width, &cub->texture[0].height);
-	cub->texture[1].img = mlx_xpm_file_to_image(cub->mlx, cub->so,
+	cub->texture[1].img = mlx_xpm_file_to_image(cub->mlx, cub->we,
 			&cub->texture[1].width, &cub->texture[1].height);
-	cub->texture[2].img = mlx_xpm_file_to_image(cub->mlx, cub->we,
+	cub->texture[2].img = mlx_xpm_file_to_image(cub->mlx, cub->ea,
 			&cub->texture[2].width, &cub->texture[2].height);
-	cub->texture[3].img = mlx_xpm_file_to_image(cub->mlx, cub->ea,
+	cub->texture[3].img = mlx_xpm_file_to_image(cub->mlx, cub->so,
 			&cub->texture[3].width, &cub->texture[3].height);
 	if (cub->texture->img == NULL || cub->texture[1].img == NULL
 		|| cub->texture[2].img == NULL || cub->texture[3].img == NULL)
@@ -86,7 +86,7 @@ int	get_texture(t_cub *cub, char *line)
 		free(tmp);
 		free(tex);
 		free(path);
-		printf("Error\n");
+		printf("Error: invalid texture\n");
 		return (0);
 	}
 	close(fd);

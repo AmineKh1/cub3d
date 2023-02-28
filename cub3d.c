@@ -6,7 +6,7 @@
 /*   By: heloufra <heloufra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 13:16:33 by akhouya           #+#    #+#             */
-/*   Updated: 2023/02/28 18:46:57 by heloufra         ###   ########.fr       */
+/*   Updated: 2023/02/28 19:18:14 by heloufra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int	main(int argc, char *argv[])
 		return (1);
 	cub->mlx = mlx_init();
 	if (!parser(cub, argv[1]))
-		return (1);
+		return (2);
 	cub->minimap = 0.2;
 	cub->wall_strip_width = 1;
 	cub->window_height = 1080;
@@ -105,6 +105,8 @@ int	main(int argc, char *argv[])
 	cub->cubpx = 64;
 	cub->num_rays = cub->window_width / cub->wall_strip_width;
 	cub->rayc = malloc(cub->num_rays * sizeof(t_rayc));
+	if (!cub->rayc)
+		return (1);
 	cub->fov_angle = (60 * (M_PI / 180));
 	setup_map(cub);
 	rander_map(cub);

@@ -6,7 +6,7 @@
 /*   By: heloufra <heloufra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 00:49:14 by heloufra          #+#    #+#             */
-/*   Updated: 2023/02/28 18:02:10 by heloufra         ###   ########.fr       */
+/*   Updated: 2023/02/28 19:15:28 by heloufra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	parser_color(t_cub *cub, char **lines)
 	}
 	if (valid_colors(cub))
 		return (1);
+	printf("Error : Invalid color\n");
 	return (0);
 }
 
@@ -97,22 +98,3 @@ char	*remove_spaces(char *line)
 	}
 	return (str);
 }
-
-/*
-int main(int argc, char *argv[])
-{
-	t_cub *cub;
-	char **lines;
-
-	if (argc != 2)
-		return (0);
-	cub = ft_calloc(1, sizeof(t_cub));
-	cub->F = -1;
-	cub->C = -1;
-	lines = read_file(argv[1]);
-	int re = parser_color(cub, lines);
-	printf("F = %x\n", cub->F);
-	printf("C = %x\n", cub->C);
-	printf("re = %d\n", re);
-}
-*/

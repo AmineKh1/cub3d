@@ -6,7 +6,7 @@
 /*   By: heloufra <heloufra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 02:40:14 by heloufra          #+#    #+#             */
-/*   Updated: 2023/02/28 18:39:02 by heloufra         ###   ########.fr       */
+/*   Updated: 2023/02/28 19:12:53 by heloufra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,25 +104,3 @@ int	valid_map_space(t_cub *cub, int i, int j)
 	}
 	return (1);
 }
-
-/*
-int main(int argc, char *argv[])
-{
-    t_cub *cub;
-    char **lines;
-
-    if (argc != 2)
-        return (0);
-    cub = ft_calloc(sizeof(t_cub), 1);
-    lines = read_file(argv[1]);
-    if (!parser_map(cub, lines))
-        return (0);
-		
-    int i = 0;
-    while (cub->map[i])
-    {
-        printf("%s\n", cub->map[i]);
-        i++;
-    }
-    return (0);
-} */
